@@ -6,7 +6,7 @@
 /*   By: amoubare <amoubare@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 18:20:30 by fahd              #+#    #+#             */
-/*   Updated: 2022/10/18 04:46:55 by amoubare         ###   ########.fr       */
+/*   Updated: 2022/10/18 22:06:23 by amoubare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ typedef struct s_minishell
 t_minishell	g_vars;
 
 // parse
-
+void print_int_tab(int *tab);
 void 	switch_var(int *i);
 int		ft_is_space(void);
 char 	*dq_content(char *value);

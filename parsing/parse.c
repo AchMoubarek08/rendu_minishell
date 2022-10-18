@@ -6,7 +6,7 @@
 /*   By: amoubare <amoubare@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 01:17:49 by amoubare          #+#    #+#             */
-/*   Updated: 2022/10/18 04:03:15 by amoubare         ###   ########.fr       */
+/*   Updated: 2022/10/18 22:44:55 by amoubare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,13 @@ char	*expand_dollar(char *value, int *sequences)
 		{
 			dq = ft_strdup("");
 			i++;
+			if(value[i] == '\0')
+				errors(2);
+			else if(value[i] && value[i] == 34)
+			{
+				i++;
+				continue ;
+			}
 			while(value[i] && value[i] != 34)
 			{
 				dq = ft_strjoin(dq, ft_strndup(&value[i], 1));
@@ -147,7 +154,7 @@ char	*expand_dollar(char *value, int *sequences)
 			i++;
 			sequences[o] = 2;
 			o++;
-			while(value[i] != 39)
+			while(value[i] && value[i] != 39)
 			{
 				result = ft_strjoin(result, ft_strndup(&value[i], 1));
 				i++;
@@ -168,13 +175,24 @@ char	*expand_dollar(char *value, int *sequences)
 	}
 	return(result);
 }
-
+void print_int_tab(int *tab)
+{
+	int i = 0;
+	while(tab[i])
+	{
+		printf("%d ", tab[i]);
+		i++;
+	}
+	printf("\n");
+}
 char	*remove_quotes(char *value, int *sequences)
 {
 	int i;
 	i = 0;
 	char q;
 	char *result = ft_strdup("");
+	// print_int_tab(sequences);
+	// printf("%s\n", &value[i]);
 	while(value[i] != '\0')
 	{
 		if(sequences[i] != 1)
