@@ -6,7 +6,7 @@
 /*   By: amoubare <amoubare@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 01:17:49 by amoubare          #+#    #+#             */
-/*   Updated: 2022/10/18 22:44:55 by amoubare         ###   ########.fr       */
+/*   Updated: 2022/10/18 22:46:00 by amoubare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,24 +175,12 @@ char	*expand_dollar(char *value, int *sequences)
 	}
 	return(result);
 }
-void print_int_tab(int *tab)
-{
-	int i = 0;
-	while(tab[i])
-	{
-		printf("%d ", tab[i]);
-		i++;
-	}
-	printf("\n");
-}
 char	*remove_quotes(char *value, int *sequences)
 {
 	int i;
 	i = 0;
 	char q;
 	char *result = ft_strdup("");
-	// print_int_tab(sequences);
-	// printf("%s\n", &value[i]);
 	while(value[i] != '\0')
 	{
 		if(sequences[i] != 1)
