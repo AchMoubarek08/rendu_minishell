@@ -6,7 +6,7 @@
 /*   By: amoubare <amoubare@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 01:17:49 by amoubare          #+#    #+#             */
-/*   Updated: 2022/10/18 22:46:00 by amoubare         ###   ########.fr       */
+/*   Updated: 2022/10/18 23:27:38 by amoubare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,8 @@ char	*expand_dollar(char *value, int *sequences)
 			while(value[i] && value[i] != 34)
 			{
 				dq = ft_strjoin(dq, ft_strndup(&value[i], 1));
+				sequences[o] = 1;
+				o++;
 				i++;
 			}
 			j = 0;
@@ -152,6 +154,8 @@ char	*expand_dollar(char *value, int *sequences)
 		{
 			result = ft_strjoin(result, ft_strndup(&value[i], 1));
 			i++;
+			if(value[i] == '\0')
+				errors(2);
 			sequences[o] = 2;
 			o++;
 			while(value[i] && value[i] != 39)
@@ -189,8 +193,11 @@ char	*remove_quotes(char *value, int *sequences)
 			{
 				q = value[i];
 				i++;
-				if(ft_int_strchr(&value[i], q) == -1)
-					errors(2);
+				if(q == 39 || q == 34)
+				{
+					if(ft_int_strchr(&value[i], q) == -1 && g_vars.g_err != 1)
+						errors(2);
+				}
 				while(value[i] && value[i] != q)
 				{
 					result = ft_strjoin(result, ft_strndup(&value[i], 1));
